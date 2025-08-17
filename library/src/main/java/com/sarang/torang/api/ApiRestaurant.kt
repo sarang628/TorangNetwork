@@ -1,12 +1,12 @@
 package com.sarang.torang.api
 
-import android.view.Menu
 import com.sarang.torang.data.remote.response.FeedApiModel
-import com.sarang.torang.data.remote.response.RestaurantResponseDto
 import com.sarang.torang.data.remote.response.FilterApiModel
 import com.sarang.torang.data.remote.response.HoursOfOperationApiModel
+import com.sarang.torang.data.remote.response.MenuApiModel
 import com.sarang.torang.data.remote.response.PictureApiModel
 import com.sarang.torang.data.remote.response.RestaurantDetailApiModel
+import com.sarang.torang.data.remote.response.RestaurantResponseDto
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -40,7 +40,7 @@ interface ApiRestaurant {
 
     @FormUrlEncoded
     @POST("getMenus")
-    suspend fun getMenus(@FieldMap params: Map<String, String>): List<Menu>
+    suspend fun getMenus(@FieldMap params: Map<String, String>): List<MenuApiModel>
 
     @FormUrlEncoded
     @POST("getPictures")
