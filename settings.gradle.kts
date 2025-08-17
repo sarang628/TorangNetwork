@@ -16,8 +16,15 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven("https://jitpack.io")
+    }
+    versionCatalogs {
+        create("libs") {
+            from(files("gradle/TorangToml/libs.versions.toml"))
+        }
     }
 }
 
 rootProject.name = "TorangNetwork"
 include(":app")
+include(":library")
