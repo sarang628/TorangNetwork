@@ -1,13 +1,13 @@
-package com.sarang.torang.data.remote.response;
+package com.sarang.torang.data.remote.response
 
 /**
  *
  */
-public class MenuApiModel {
-    public int restaurant_id;
-    public float rating;
-    public String menu_id;
-    public String menu_name;
-    public String menu_price;
-    public String menu_pic_url;
-}
+data class MenuApiModel (
+    val restaurant_id: Int = 0,
+    val rating: Float = 0f,
+    val menu_id: String? = null,
+    val menu_name: String? = null,
+    val menu_price: String? = null,
+    val menu_pic_url: String? = null,
+)

@@ -1,17 +1,17 @@
-package com.sarang.torang.data.remote.response;
+package com.sarang.torang.data.remote.response
 
 /**
  *
  */
-public class PictureApiModel {
-    public int picture_id;
-    public int restaurant_id;
-    public int user_id;
-    public int review_id;
-    public String picture_url;
-    public String create_date;
-    public int menu_id;
-    public MenuApiModel menu;
-    public int width;
-    public int height;
-}
+data class PictureApiModel (
+    val picture_id: Int = 0,
+    val restaurant_id: Int = 0,
+    val user_id: Int = 0,
+    val review_id: Int = 0,
+    val picture_url: String? = null,
+    val create_date: String? = null,
+    val menu_id: Int = 0,
+    val menu: MenuApiModel? = null,
+    val width: Int = 0,
+    val height: Int = 0
+)

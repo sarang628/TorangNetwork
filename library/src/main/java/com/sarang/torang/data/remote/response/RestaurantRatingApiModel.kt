@@ -1,10 +1,10 @@
-package com.sarang.torang.data.remote.response;
+package com.sarang.torang.data.remote.response
 
-public class RestaurantRatingApiModel {
-    public float rating;
-    public int one;
-    public int two;
-    public int three;
-    public int four;
-    public int five;
-}
+data class RestaurantRatingApiModel(
+    val rating: Float = 0f,
+    val one: Int = 0,
+    val two: Int = 0,
+    val three: Int = 0,
+    val four: Int = 0,
+    val five: Int = 0
+)
