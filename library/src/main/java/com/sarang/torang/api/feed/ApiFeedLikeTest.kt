@@ -36,8 +36,8 @@ fun ApiFeedLikeTest(apiFeed: ApiFeed) {
             loading = true
             scope.launch {
                 try {
-                    val result = apiFeed.addLike("", 64)
-                    padding = GsonBuilder().setPrettyPrinting().create().toJson(result)
+                    //val result = apiFeed.addLike("", 64)
+                    //padding = GsonBuilder().setPrettyPrinting().create().toJson(result)
                 } catch (e: SSLException) {
                     Log.e("sryang123", e.toString())
                     error = e.toString()
@@ -62,8 +62,8 @@ fun ApiFeedLikeTest(apiFeed: ApiFeed) {
         Button(onClick = {
             scope.launch {
                 try {
-                    val result = apiFeed.deleteLike(14)
-                    padding = GsonBuilder().setPrettyPrinting().create().toJson(result)
+                    //val result = apiFeed.deleteLike(14)
+                    //padding = GsonBuilder().setPrettyPrinting().create().toJson(result)
                 } catch (e: SSLException) {
                     Log.e("sryang123", e.toString())
                     error = e.toString()

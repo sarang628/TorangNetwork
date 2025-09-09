@@ -8,17 +8,7 @@ import retrofit2.http.Header
 import retrofit2.http.POST
 
 interface ApiLogin {
-    @FormUrlEncoded
-    @POST("emailLogin")
-    suspend fun emailLogin(
-        @Field("email") email: String,
-        @Field("password") password: String,
-    ): LoginApiModel
-
-    @FormUrlEncoded
-    @POST("facebook_login")
-    suspend fun facebook_login(@Field("accessToken") accessToken: String): Response<String>
-
-    @POST("sessionCheck")
-    suspend fun sessionCheck(@Header("authorization") auth: String): Boolean
+                    @POST("sessionCheck")   suspend fun sessionCheck    (@Header("authorization") auth: String): Boolean
+    @FormUrlEncoded @POST("emailLogin")     suspend fun emailLogin      (@Field("email") email: String, @Field("password") password: String, ): LoginApiModel
+    @FormUrlEncoded @POST("facebook_login") suspend fun facebook_login  (@Field("accessToken") accessToken: String): Response<String>
 }
