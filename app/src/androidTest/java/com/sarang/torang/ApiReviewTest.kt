@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.google.gson.GsonBuilder
 import com.sarang.torang.api.ApiChat
+import com.sarang.torang.api.ApiLike
 import com.sarang.torang.api.ApiLogin
 import com.sarang.torang.api.ApiReview
 import com.sarang.torang.api.ApiReviewV1
@@ -27,6 +28,8 @@ class ApiReviewTest {
     @Inject lateinit var sessionService: SessionService
     @Inject lateinit var login: ApiLogin
 
+    @Inject lateinit var like: ApiLike
+
     val tag = "__ApiReviewTest"
 
     @Before
@@ -38,7 +41,14 @@ class ApiReviewTest {
 
     @Test
     fun getReviewsByRestaurantId() = runTest {
-        val result = apiReviewV1.getReviewsByRestaurantId(289)
-        Log.d(tag, GsonBuilder().setPrettyPrinting().create().toJson(result))
+        sessionService.getToken()?.let {
+            try {
+                like.addLike(it, 615)
+            }catch (e : Exception){
+                println(e.message)
+            }
+            val result = apiReviewV1.getReviewsByRestaurantId(it, 299)
+            Log.d(tag, GsonBuilder().setPrettyPrinting().create().toJson(result))
+        }
     }
 }
