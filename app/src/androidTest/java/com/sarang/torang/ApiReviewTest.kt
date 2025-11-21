@@ -16,7 +16,7 @@ import javax.inject.Inject
 
 @RunWith(AndroidJUnit4::class)
 @HiltAndroidTest
-class ApiChatTest {
+class ApiReviewTest {
     @get:Rule var hiltRule = HiltAndroidRule(this)
     @Inject lateinit var apiChat: ApiChat
     @Inject lateinit var sessionService: SessionService

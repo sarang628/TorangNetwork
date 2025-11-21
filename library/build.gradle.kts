@@ -38,7 +38,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.6"
+        kotlinCompilerExtensionVersion = libs.versions.kotlinCompilerExtension.get()
     }
 }
 
@@ -52,17 +52,26 @@ dependencies {
     kapt(libs.hilt.compiler)
     implementation(libs.hilt.nav.compose) // hiltViewModel
 
-    // Testing Start
+    /** TEST Start */
     testImplementation(libs.junit)
     androidTestImplementation(libs.x.junit.ext)
     androidTestImplementation(libs.x.espresso.core)
     testImplementation(libs.kotlinx.coroutines.test) // coroutines unit test
     androidTestImplementation(libs.x.ui.test.junit4) // Test rules and transitive dependencies
     debugImplementation(libs.x.ui.test.manifest) // Needed for createAndroidComposeRule, but not createComposeRule
-    testImplementation(libs.mockito.core) // Mockito
-    testImplementation(libs.mockito.inline)
-    testImplementation(libs.core.testing) // AndroidX Core Testing
-    // Testing End
+
+    // Hilt Start
+    // For Robolectric tests.
+    testImplementation(libs.hilt.testing)
+    kaptTest(libs.hilt.compiler)
+    testAnnotationProcessor(libs.hilt.compiler)
+
+    // For instrumented tests.
+    androidTestImplementation(libs.hilt.testing)
+    kaptAndroidTest(libs.hilt.compiler)
+    androidTestAnnotationProcessor(libs.hilt.compiler)
+    // Hilt End
+    /** TEST End */
 
     // Compose
     androidTestImplementation(platform(libs.x.compose.bom))
