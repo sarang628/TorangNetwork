@@ -74,7 +74,7 @@ fun ApiReviewTest(apiReview: ApiReview) {
         Button(onClick = {
             coroutine.launch {
                 try {
-                    message = apiReview.getReviews(1).toString()
+                    message = apiReview.getReviewsByRestaurantId(1).toString()
                 } catch (e: Exception) {
                     message = e.handle()
                 }

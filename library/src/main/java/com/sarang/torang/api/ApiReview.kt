@@ -21,7 +21,7 @@ interface ApiReview {
                     @POST("getMyMenuReviews")       suspend fun getMyMenuReviews    (@Body review: FeedApiModel): Call<ArrayList<MenuReviewApiModel>>
     @Multipart      @POST("updateReview")           suspend fun updateReview        (@PartMap params: HashMap<String, RequestBody>, @Part pictures: ArrayList<MultipartBody.Part>): FeedApiModel
     @Multipart      @POST("addReview")              suspend fun addReview           (@Part("review_id") review_id: Int? = null, @Part("contents") contents: RequestBody, @Part("rating") rating: Float, @Part("torang_id") torang_id: Int?, @Part("user_id") user_id: Int, @Part("uploadedImage") uploadedImage: List<Int>? = null, @Part file: ArrayList<MultipartBody.Part>? = null): FeedApiModel
-    @FormUrlEncoded @POST("getReviews")             suspend fun getReviews          (@Field("restaurant_id") id: Int): List<FeedApiModel>
+    @FormUrlEncoded @POST("getReviews")             suspend fun getReviewsByRestaurantId (@Field("restaurant_id") restaurantId: Int): List<FeedApiModel>
     @FormUrlEncoded @POST("getMyReview")            suspend fun getMyReview         (@FieldMap params: Map<String, String>): FeedApiModel
     @FormUrlEncoded @POST("getMyReviews")           suspend fun getMyReviews        (@FieldMap params: Map<String, String>): ArrayList<FeedApiModel>
     @FormUrlEncoded @POST("getMyReviewsByUserId")   suspend fun getMyReviewsByUserId(@Field("userId") userId: Int): List<FeedApiModel>

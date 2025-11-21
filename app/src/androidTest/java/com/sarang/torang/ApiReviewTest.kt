@@ -1,8 +1,12 @@
 package com.sarang.torang
 
+import android.util.Log
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.google.gson.GsonBuilder
 import com.sarang.torang.api.ApiChat
 import com.sarang.torang.api.ApiLogin
+import com.sarang.torang.api.ApiReview
+import com.sarang.torang.api.ApiReviewV1
 import com.sarang.torang.session.SessionService
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
@@ -18,9 +22,12 @@ import javax.inject.Inject
 @HiltAndroidTest
 class ApiReviewTest {
     @get:Rule var hiltRule = HiltAndroidRule(this)
-    @Inject lateinit var apiChat: ApiChat
+    @Inject lateinit var apiReview: ApiReview
+    @Inject lateinit var apiReviewV1: ApiReviewV1
     @Inject lateinit var sessionService: SessionService
     @Inject lateinit var login: ApiLogin
+
+    val tag = "__ApiReviewTest"
 
     @Before
     fun setUp() = runTest {
@@ -30,9 +37,8 @@ class ApiReviewTest {
     }
 
     @Test
-    fun getChatRoomTest() = runTest {
-        val result = apiChat.getChatRoom(sessionService.getToken()!!)
-        Assert.assertEquals(result.isNotEmpty(), true)
-        Assert.assertEquals(result[0].users[0].userName.isNotEmpty(), true)
+    fun getReviewsByRestaurantId() = runTest {
+        val result = apiReviewV1.getReviewsByRestaurantId(289)
+        Log.d(tag, GsonBuilder().setPrettyPrinting().create().toJson(result))
     }
 }
