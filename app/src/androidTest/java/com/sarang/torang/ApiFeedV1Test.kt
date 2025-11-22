@@ -20,6 +20,8 @@ class ApiFeedV1Test {
     @Inject lateinit var apiFeedV1: ApiFeedV1
     @Before fun setUp() { hiltRule.inject() }
 
+    val Omnivore_by_Sharkys = 299
+
     @Test
     fun findAllTest() = runTest {
         val result = apiFeedV1.findAll(null)
@@ -54,14 +56,14 @@ class ApiFeedV1Test {
 
     @Test
     fun findByRestaurantIdTest() = runTest {
-        val result = apiFeedV1.findByRestaurantId(null, 234)
+        val result = apiFeedV1.findByRestaurantId(null, Omnivore_by_Sharkys)
         print(GsonBuilder().setPrettyPrinting().create().toJson(result))
         Assert.assertEquals(result.isNotEmpty(), true)
     }
 
     @Test
     fun findByUserAndRestaurantId() = runTest {
-        val result = apiFeedV1.findByUserAndRestaurantId(null, 1, 234)
+        val result = apiFeedV1.findByUserAndRestaurantId(null, 1, Omnivore_by_Sharkys)
         print(GsonBuilder().setPrettyPrinting().create().toJson(result))
         Assert.assertEquals(result.isNotEmpty(), true)
     }
