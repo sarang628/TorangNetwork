@@ -7,6 +7,7 @@ data class FavoriteFeedApiModel(
     val createDate      : String
 ){
     data class Picture(
+        val pictureId : Int,
         val pictureUrl  : String,
         val width       : Int,
         val height      : Int
