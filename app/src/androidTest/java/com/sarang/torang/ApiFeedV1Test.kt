@@ -89,7 +89,8 @@ class ApiFeedV1Test {
     @Test
     fun findByLikeTest() = runTest {
         val resultLogin = apiLogin.emailLogin("sry_ang@naver.com", Encrypt.encrypt("Torang!234"))
-        val resultFavorite = apiFeedV1.findByLike(resultLogin.token)
-        assertEquals(true, resultFavorite.isNotEmpty())
+        val resultLikes = apiFeedV1.findByLike(resultLogin.token)
+        Log.d(tag, GsonBuilder().setPrettyPrinting().create().toJson(resultLikes))
+        assertEquals(true, resultLikes.isNotEmpty())
     }
 }

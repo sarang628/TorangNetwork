@@ -2,6 +2,7 @@ package com.sarang.torang.api.feed
 
 import com.sarang.torang.data.remote.response.FavoriteFeedApiModel
 import com.sarang.torang.data.remote.response.FeedApiModel
+import com.sarang.torang.data.remote.response.LikeFeedApiModel
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Path
@@ -36,5 +37,5 @@ interface ApiFeedV1 {
     @GET("v1/favorite")
     suspend fun findByFavorite              (@Header(value  = "authorization")   auth         : String)   : List<FavoriteFeedApiModel>
     @GET("v1/like")
-    suspend fun findByLike                  (@Header(value  = "authorization")   auth         : String)   : List<FeedApiModel>
+    suspend fun findByLike                  (@Header(value  = "authorization")   auth         : String)   : List<LikeFeedApiModel>
 }
