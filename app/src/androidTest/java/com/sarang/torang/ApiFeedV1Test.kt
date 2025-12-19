@@ -31,66 +31,63 @@ class ApiFeedV1Test {
     val Omnivore_by_Sharkys = 299
 
 
-    @Test
-    fun pageTest() = runTest {
+    @Test fun pageTest() = runTest {
         val result = apiFeedV1.findByPage(null, 1)
         Assert.assertEquals(result.isNotEmpty(), true)
     }
 
-    @Test
-    fun userFeedsTest() = runTest {
+    @Test fun userFeedsTest() = runTest {
         val result = apiFeedV1.findByTokenAndId(null, 425)
         print(GsonBuilder().setPrettyPrinting().create().toJson(result))
         Assert.assertEquals(result != null, true)
     }
 
-    @Test
-    fun findByIdTest() = runTest {
+    @Test fun findByIdTest() = runTest {
         val result = apiFeedV1.findById(null, 425)
         print(GsonBuilder().setPrettyPrinting().create().toJson(result))
     }
 
-    @Test
-    fun findNextByIdTest() = runTest {
+    @Test fun findNextByIdTest() = runTest {
         val result = apiFeedV1.findNextById(null, 425, 30)
         print(GsonBuilder().setPrettyPrinting().create().toJson(result))
         Assert.assertEquals(result.isNotEmpty(), true)
     }
 
-    @Test
-    fun findByRestaurantIdTest() = runTest {
+    @Test fun findByRestaurantIdTest() = runTest {
         val result = apiFeedV1.findByRestaurantId(null, Omnivore_by_Sharkys)
         print(GsonBuilder().setPrettyPrinting().create().toJson(result))
         Assert.assertEquals(result.isNotEmpty(), true)
     }
 
-    @Test
-    fun findByUserAndRestaurantId() = runTest {
+    @Test fun findByUserAndRestaurantId() = runTest {
         val result = apiFeedV1.findByUserAndRestaurantId(null, 1, Omnivore_by_Sharkys)
         print(GsonBuilder().setPrettyPrinting().create().toJson(result))
         Assert.assertEquals(result.isNotEmpty(), true)
     }
 
-    @Test
-    fun findByUserIdTest() = runTest {
+    @Test fun findByUserIdTest() = runTest {
         val result = apiFeedV1.findByUserId(null, 1)
         print(GsonBuilder().setPrettyPrinting().create().toJson(result))
         Assert.assertEquals(result.isNotEmpty(), true)
     }
 
-    @Test
-    fun findByFavoriteTest() = runTest {
+    @Test fun findByFavoriteTest() = runTest {
         val resultLogin : LoginApiModel = apiLogin.emailLogin("sry_ang@naver.com", Encrypt.encrypt("Torang!234"))
         val resultFavorite : List<FavoriteFeedApiModel> = apiFeedV1.findByFavorite(resultLogin.token)
         Log.d(tag, GsonBuilder().setPrettyPrinting().create().toJson(resultFavorite))
         assertEquals(true, resultFavorite.isNotEmpty())
     }
 
-    @Test
-    fun findByLikeTest() = runTest {
+    @Test fun findByLikeTest() = runTest {
         val resultLogin = apiLogin.emailLogin("sry_ang@naver.com", Encrypt.encrypt("Torang!234"))
         val resultLikes = apiFeedV1.findByLike(resultLogin.token)
         Log.d(tag, GsonBuilder().setPrettyPrinting().create().toJson(resultLikes))
         assertEquals(true, resultLikes.isNotEmpty())
+    }
+
+    @Test fun findByFeedGridTest() = runTest {
+        val result = apiFeedV1.findByFeedGrid(reviewId = 630, offset = 50)
+        Log.d(tag, GsonBuilder().setPrettyPrinting().create().toJson(result))
+        assertEquals(true, result.isNotEmpty())
     }
 }
