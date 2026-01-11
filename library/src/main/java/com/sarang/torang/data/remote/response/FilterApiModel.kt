@@ -7,7 +7,7 @@ data class FilterApiModel(
     val distances       : String?       = null,
     val prices          : List<String>? = null,
     val restaurantTypes : List<String>? = null,
-    val ratings         : List<String>? = null,
+    val ratings         : List<RatingApiModel>? = null,
     val latitude        : Double?       = null,
     val longitude       : Double?       = null,
     val northEastLat    : Double?       = null,
@@ -15,3 +15,11 @@ data class FilterApiModel(
     val southWestLat    : Double?       = null,
     val southWestLon    : Double?       = null
 )
+
+enum class RatingApiModel{
+    ONE,
+    TWO,
+    THREE,
+    FOUR,
+    FIVE
+}

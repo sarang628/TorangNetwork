@@ -2,10 +2,10 @@ package com.sarang.torang
 
 import android.util.Log
 import androidx.test.runner.AndroidJUnit4
-import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.sarang.torang.api.ApiFilter
 import com.sarang.torang.data.remote.response.FilterApiModel
+import com.sarang.torang.data.remote.response.RatingApiModel
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import kotlinx.coroutines.test.runTest
@@ -39,6 +39,14 @@ class ApiFilterTest {
     @Test
     fun test() = runTest {
         var result = apiFilter.aroundRestaurant(FilterApiModel())
+        Log.d("__test", GsonBuilder().setPrettyPrinting().create().toJson(result))
+    }
+
+    @Test
+    fun aroundRestaurantTest() = runTest {
+        var result = apiFilter.aroundRestaurant(FilterApiModel(
+            ratings = listOf(RatingApiModel.ONE, RatingApiModel.TWO, RatingApiModel.THREE, RatingApiModel.FIVE, RatingApiModel.FOUR)
+        ))
         Log.d("__test", GsonBuilder().setPrettyPrinting().create().toJson(result))
     }
 }
