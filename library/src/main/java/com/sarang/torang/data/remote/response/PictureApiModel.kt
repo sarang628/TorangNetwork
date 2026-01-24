@@ -11,6 +11,7 @@ data class RemotePicture(
     val menu: String,
     val width: Int,
     val height: Int,
+    val order : Int
 )
 
 /*
