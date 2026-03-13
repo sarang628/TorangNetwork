@@ -4,10 +4,12 @@ package com.sarang.torang.data.remote.response
  *
  */
 data class MenuApiModel (
-    val restaurant_id: Int = 0,
+    val restaurantId: Int = 0,
     val rating: Float = 0f,
-    val menu_id: String? = null,
-    val menu_name: String? = null,
-    val menu_price: String? = null,
-    val menu_pic_url: String? = null,
+    val menuId: String? = null,
+    val menuName: String? = null,
+    val menuPrice: String? = null,
+    val menuPicUrl: String? = null,
+    val order: Int? = null,
+    val children: List<MenuApiModel>? = null,
 )
