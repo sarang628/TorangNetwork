@@ -1,9 +1,11 @@
 package com.sarang.torang
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.google.gson.GsonBuilder
 import com.sarang.torang.api.ApiAlarm
 import com.sarang.torang.api.ApiLogin
 import com.sarang.torang.api.handle
+import com.sarang.torang.data.remote.response.AlarmApiModel
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import kotlinx.coroutines.test.runTest
@@ -19,6 +21,8 @@ import javax.inject.Inject
 @HiltAndroidTest
 class AlarmTest {
 
+    val tag = "__AlarmTest"
+
     @get:Rule
     var hiltRule = HiltAndroidRule(this)
 
@@ -33,21 +37,28 @@ class AlarmTest {
     @Before
     fun setUp() = runTest {
         hiltRule.inject()
-        token = apiLogin.emailLogin("sry_ang@naver.com", Encrypt.encrypt("didtkfkd")).token
+        token = apiLogin.emailLogin("sry_ang@naver.com", Encrypt.encrypt("Torang!234")).token
     }
 
     @Test
-    fun testGetAlarms() = runTest {
-        apiAlarm.getAlarms(token)
+    fun getAlarmTest() = runTest {
+        val result : List<AlarmApiModel>? = apiAlarm.findAll(token).body()
+        println(GsonBuilder().setPrettyPrinting().create().toJson(result))
+        //Log.d(tag, GsonBuilder().setPrettyPrinting().create().toJson(result))
     }
 
     @Test
-    fun testGetAlarms1() = runTest {
+    fun getAlarmFailedTest() = runTest {
         try {
-            apiAlarm.getAlarms("auth")
+            apiAlarm.findAll("auth")
         } catch (e: retrofit2.HttpException) {
             Assert.assertEquals(500, e.code())
             Assert.assertEquals("인증에 실패하였습니다.", e.handle())
         }
+    }
+
+    @Test
+    fun deleteAlarmTest() = runTest {
+        apiAlarm.delete(token,123)
     }
 }

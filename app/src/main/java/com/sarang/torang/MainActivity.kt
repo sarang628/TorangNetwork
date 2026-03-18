@@ -20,7 +20,7 @@ import com.sarang.torang.api.ApiCommentLike
 import com.sarang.torang.api.ApiLike
 import com.sarang.torang.api.ApiRestaurant
 import com.sarang.torang.api.ApiReview
-import com.sarang.torang.api.feed.ApiFeed
+import com.sarang.torang.api.ApiFeed
 import com.sarang.torang.ui.theme.TorangNetworkTheme
 import com.sryang.torang.ui.TorangTheme
 import dagger.hilt.android.AndroidEntryPoint

@@ -1,4 +1,4 @@
-package com.sarang.torang.api.feed
+package com.sarang.torang.api
 
 import com.sarang.torang.data.remote.response.FavoriteFeedApiModel
 import com.sarang.torang.data.remote.response.FeedApiModel
@@ -8,7 +8,6 @@ import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Path
 import retrofit2.http.Query
-
 
 interface ApiFeedV1 {
     @GET("page")

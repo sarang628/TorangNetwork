@@ -3,7 +3,7 @@ package com.sarang.torang
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import com.sarang.torang.api.feed.ApiFeed
+import com.sarang.torang.api.ApiFeed
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import kotlinx.coroutines.test.runTest

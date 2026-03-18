@@ -1,4 +1,4 @@
-package com.sarang.torang.api.test
+package com.sarang.torang
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth

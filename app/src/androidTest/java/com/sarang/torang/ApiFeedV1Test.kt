@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.google.gson.GsonBuilder
 import com.sarang.torang.api.ApiLogin
-import com.sarang.torang.api.feed.ApiFeedV1
+import com.sarang.torang.api.ApiFeedV1
 import com.sarang.torang.data.remote.response.FavoriteFeedApiModel
 import com.sarang.torang.data.remote.response.LoginApiModel
 import dagger.hilt.android.testing.HiltAndroidRule
