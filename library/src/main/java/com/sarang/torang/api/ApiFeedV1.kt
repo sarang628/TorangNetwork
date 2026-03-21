@@ -10,35 +10,90 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ApiFeedV1 {
-    @GET("page")
-    suspend fun findByPage                  (@Header(value  = "authorization")   auth         : String?,
-                                             @Query(value   = "page")            page         : Int,
-                                             @Query(value   = "size")            size         : Int = 20) : List<FeedApiModel>
+    /**
+     * 피드 페이지로 불러오기
+     */
+    @GET("page/{page}/size/{size}")
+    suspend fun findByPage(
+        @Header(value = "authorization") auth: String?,
+        @Path(value = "page") page: Int,
+        @Path(value = "size") size: Int = 20
+    ): List<FeedApiModel>
+
+    /**
+     * 피드 리뷰Id로 불러오기
+     */
     @GET("user/reviewId/{reviewId}")
-    suspend fun findByTokenAndId            (@Header(value  = "authorization")   auth         : String?,
-                                             @Path(value    = "reviewId")        reviewId     : Int)      : List<FeedApiModel>
+    suspend fun findUsersReviewsByReviewId(
+        @Header(value = "authorization") auth: String?,
+        @Path(value = "reviewId") reviewId: Int
+    ): List<FeedApiModel>
+
+    /**
+     * 피드 리뷰Id로 불러오기
+     */
     @GET("id/{reviewId}")
-    suspend fun findById                    (@Header(value  = "authorization")   auth         : String?,
-                                             @Path(value    = "reviewId")        reviewId     : Int)      : FeedApiModel
-    @GET("next")
-    suspend fun findNextById                (@Header(value  = "authorization")   auth         : String?,
-                                             @Query(value   = "reviewId")        reviewId     : Int,
-                                             @Query(value   = "size")            size         : Int)      : List<FeedApiModel>
+    suspend fun findById(
+        @Header(value = "authorization") auth: String?,
+        @Path(value = "reviewId") reviewId: Int
+    ): FeedApiModel
+
+    /**
+     * 다음 피드 불러오기
+     */
+    @GET("next/reviewId/{reviewId}/size/{size}")
+    suspend fun findNextById(
+        @Header(value = "authorization") auth: String?,
+        @Path(value = "reviewId") reviewId: Int,
+        @Path(value = "size") size: Int
+    ): List<FeedApiModel>
+
+    /**
+     * 음식점 ID로 피드 불러오기
+     */
     @GET("restaurant/{restaurantId}")
-    suspend fun findByRestaurantId          (@Header(value  = "authorization")   auth         : String?,
-                                             @Path(value    = "restaurantId")    restaurantId : Int)     : List<FeedApiModel>
+    suspend fun findByRestaurantId(
+        @Header(value = "authorization") auth: String?,
+        @Path(value = "restaurantId") restaurantId: Int
+    ): List<FeedApiModel>
+
+    /**
+     * 특정 유저가 음식점에 올린 리뷰 불러오기
+     */
     @GET("user/{userId}/restaurant/{restaurantId}")
-    suspend fun findByUserAndRestaurantId   (@Header(value  = "authorization")   auth         : String?,
-                                             @Path(value    = "userId")          userId       : Int,
-                                             @Path(value    = "restaurantId")    restaurantId : Int)     : List<FeedApiModel>
+    suspend fun findByUserAndRestaurantId(
+        @Header(value = "authorization") auth: String?,
+        @Path(value = "userId") userId: Int,
+        @Path(value = "restaurantId") restaurantId: Int
+    ): List<FeedApiModel>
+
+    /**
+     * 특정 유저의 피드 불러오기
+     */
     @GET("user/{userId}")
-    suspend fun findByUserId                (@Header(value  = "authorization")   auth         : String?,
-                                             @Path(value    = "userId")          userId       : Int)      : List<FeedApiModel>
-    @GET("v1/favorite")
-    suspend fun findByFavorite              (@Header(value  = "authorization")   auth         : String)   : List<FavoriteFeedApiModel>
-    @GET("v1/like")
-    suspend fun findByLike                  (@Header(value  = "authorization")   auth         : String)   : List<LikeFeedApiModel>
-    @GET("v1/feedGrid/{reviewId}/offset/{offset}")
-    suspend fun findByFeedGrid              (@Path(value    = "reviewId")        reviewId     : Int,
-                                             @Path(value    = "offset")          offset       : Int)      : List<FeedGridApiModel>
+    suspend fun findByUserId(
+        @Header(value = "authorization") auth: String?,
+        @Path(value = "userId") userId: Int
+    ): List<FeedApiModel>
+
+    /**
+     * 내가 즐겨찾기한 피드 불러오기
+     */
+    @GET("favorite")
+    suspend fun findByFavorite(@Header(value = "authorization") auth: String): List<FavoriteFeedApiModel>
+
+    /**
+     * 내가 좋아요한 피드 불러오기
+     */
+    @GET("like")
+    suspend fun findByLike(@Header(value = "authorization") auth: String): List<LikeFeedApiModel>
+
+    /**
+     * 피드 그리드 불러오기
+     */
+    @GET("feedGrid/{reviewId}/offset/{offset}")
+    suspend fun findByFeedGrid(
+        @Path(value = "reviewId") reviewId: Int,
+        @Path(value = "offset") offset: Int
+    ): List<FeedGridApiModel>
 }
