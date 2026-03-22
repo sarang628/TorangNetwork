@@ -1,8 +1,6 @@
 package com.sarang.torang
 
-import android.util.Log
 import androidx.test.runner.AndroidJUnit4
-import com.google.gson.GsonBuilder
 import com.sarang.torang.api.ApiFilter
 import com.sarang.torang.data.remote.response.FilterApiModel
 import com.sarang.torang.data.remote.response.RatingApiModel
@@ -24,11 +22,10 @@ class ApiFilterTest {
     @Before fun setUp() { hiltRule.inject() }
 
     @Test
-    fun getNationsTest() = runTest {
-        val result = apiFilter.getNations()
-        Assert.assertEquals(result.isNotEmpty(), true)
+    fun getCitiesTest() = runTest {
+        val result = apiFilter.getCities()
+        prettyPrint(result)
     }
-
 
     @Test
     fun getCitiesByNationIdTest() = runTest {
@@ -37,16 +34,28 @@ class ApiFilterTest {
     }
 
     @Test
-    fun test() = runTest {
-        var result = apiFilter.aroundRestaurant(FilterApiModel())
-        Log.d("__test", GsonBuilder().setPrettyPrinting().create().toJson(result))
+    fun getNationsTest() = runTest {
+        val result = apiFilter.getNations()
+        Assert.assertEquals(result.isNotEmpty(), true)
     }
+
 
     @Test
     fun aroundRestaurantTest() = runTest {
-        var result = apiFilter.aroundRestaurant(FilterApiModel(
+        val result = apiFilter.aroundRestaurant(FilterApiModel())
+        prettyPrint(result)
+    }
+
+    @Test
+    fun aroundRestaurantTest1() = runTest {
+        val result = apiFilter.aroundRestaurant(FilterApiModel(
             ratings = listOf(RatingApiModel.ONE, RatingApiModel.TWO, RatingApiModel.THREE, RatingApiModel.FIVE, RatingApiModel.FOUR)
         ))
-        Log.d("__test", GsonBuilder().setPrettyPrinting().create().toJson(result))
+        prettyPrint(result)
+    }
+
+    @Test
+    fun boundRestaurantTest() = runTest {
+        apiFilter.boundRestaurant(FilterApiModel())
     }
 }
