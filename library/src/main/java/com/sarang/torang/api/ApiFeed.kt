@@ -13,19 +13,15 @@ import retrofit2.http.POST
  * [좋아요](http://sarang628.iptime.org:8081/swagger-ui/#/%EC%A2%8B%EC%95%84%EC%9A%94)
  */
 interface ApiFeed {
+    @Deprecated("",
+        ReplaceWith("ApiFeedV1"),
+        level = DeprecationLevel.WARNING)
                     @POST("getFeeds")                   suspend fun getFeeds                    (@Header("authorization") auth: String?): List<FeedApiModel>
-    @FormUrlEncoded
-    @POST("getFeedsWithPage")           suspend fun getFeedsWithPage            (@Header("authorization") auth: String?, @Field("page") page: Int): List<FeedApiModel>
-    @FormUrlEncoded
-    @POST("loadUserAllFeedsByReviewId") suspend fun loadUserAllFeedsByReviewId  (@Header("authorization") auth: String?, @Field("reviewId") reviewId: Int): List<FeedApiModel>
-    @FormUrlEncoded
-    @POST("getFeedByReviewId")          suspend fun getFeedByReviewId           (@Header("authorization") auth: String?, @Field("reviewId") reviewId: Int): FeedApiModel
-    @FormUrlEncoded
-    @POST("deleteReview")               suspend fun deleteReview                (@Field("reviewId") reviewId: Int)
-    @FormUrlEncoded
-    @POST("deleteFavorite")             suspend fun deleteFavorite              (@Field("favoriteId") likeId: Int): FavoriteApiModel
-    @FormUrlEncoded
-    @POST("addFavorite")                suspend fun addFavorite                 (@Header("authorization") auth: String, @Field("reviewId") reviewId: Int): FavoriteApiModel
-    @FormUrlEncoded
-    @POST("getNextReviewsByReviewId")   suspend fun getNextReviewsByReviewId    (@Header("authorization") auth: String?, @Field("reviewId") reviewId: Int, @Field("count") count: Int): List<FeedApiModel>
+    @FormUrlEncoded @POST("getFeedsWithPage")           suspend fun getFeedsWithPage            (@Header("authorization") auth: String?, @Field("page") page: Int): List<FeedApiModel>
+    @FormUrlEncoded @POST("loadUserAllFeedsByReviewId") suspend fun loadUserAllFeedsByReviewId  (@Header("authorization") auth: String?, @Field("reviewId") reviewId: Int): List<FeedApiModel>
+    @FormUrlEncoded @POST("getFeedByReviewId")          suspend fun getFeedByReviewId           (@Header("authorization") auth: String?, @Field("reviewId") reviewId: Int): FeedApiModel
+    @FormUrlEncoded @POST("deleteReview")               suspend fun deleteReview                (@Field("reviewId") reviewId: Int)
+    @FormUrlEncoded @POST("deleteFavorite")             suspend fun deleteFavorite              (@Field("favoriteId") likeId: Int): FavoriteApiModel
+    @FormUrlEncoded @POST("addFavorite")                suspend fun addFavorite                 (@Header("authorization") auth: String, @Field("reviewId") reviewId: Int): FavoriteApiModel
+    @FormUrlEncoded @POST("getNextReviewsByReviewId")   suspend fun getNextReviewsByReviewId    (@Header("authorization") auth: String?, @Field("reviewId") reviewId: Int, @Field("count") count: Int): List<FeedApiModel>
 }

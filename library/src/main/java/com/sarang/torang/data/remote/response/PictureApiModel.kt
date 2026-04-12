@@ -1,17 +1,17 @@
 package com.sarang.torang.data.remote.response
 
 data class RemotePicture(
-    val picture_id: Int,
-    val restaurant_id: Int,
-    val user_id: Int,
-    val review_id: Int,
-    val picture_url: String,
+    val picture_id: Int?,
+    val restaurant_id: Int?,
+    val user_id: Int?,
+    val review_id: Int?,
+    val picture_url: String?,
     val create_date: String?,
-    val menu_id: Int,
-    val menu: String,
-    val width: Int,
-    val height: Int,
-    val order : Int
+    val menu_id: Int?,
+    val menu: String?,
+    val width: Int?,
+    val height: Int?,
+    val order : Int?
 )
 
 /*
